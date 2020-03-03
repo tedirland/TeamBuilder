@@ -21,7 +21,7 @@ askGeneralQuestions = function () {
 
             {
                 type: "list",
-                message: "Wnhat is your role?",
+                message: "Employee Role",
                 name: "role",
                 choices: [
                     "Manager",
@@ -99,8 +99,7 @@ askmanagerQuestions = function () {
                 if (answers.addAnother){
                     askGeneralQuestions(employeeArray);
                     
-                }else{render.render(employeeArray)
-                    console.log(html)}
+                }else{render(employeeArray)}
 
             });
 
@@ -156,8 +155,9 @@ askEngineerQuestions = function () {
                 if (answers.addAnother){
                     askGeneralQuestions(employeeArray);
                     
-                }else{render.render(employeeArray)
-                    console.log(html)}
+                }else{render(employeeArray)}
+
+                //how do I grab the rendered HTML now and writefile?
             });
 
 
@@ -213,8 +213,7 @@ askInternQuestions = function () {
                 if (answers.addAnother){
                     askGeneralQuestions(employeeArray);
                     
-                }else{render.render(employeeArray)
-                console.log(html)}
+                }else{render(employeeArray)}
 
             });
 }
