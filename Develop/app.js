@@ -10,46 +10,217 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const employeeArray = [];
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+askGeneralQuestions = function () {
+    inquirer
+        .prompt([
 
+            {
+                type: "list",
+                message: "Wnhat is your role?",
+                name: "role",
+                choices: [
+                    "Manager",
+                    "Engineer",
+                    "Intern"
+                ]
+            }
 
-inquirer
-    .prompt([
-        {
-            type: "list",
-            message: "Wnhat is your role?",
-            name: "role",
-            choices: [
-              "Manager",
-              "Engineer",
-              "Intern"
-            ]
-          },
-        {
+        ]).then(answers => {
+            let employeeArray = []
+            const employeeRole = answers.role
+            switch (employeeRole) {
 
-            type: "input",
-            message: "What is your name?",
-            name: "employeeName"
-        },
-        {
-            type: "input",
-            message: "What is your employee id number",
-            name: "idNum"
-        },
-        {
-            type: "input",
-            message: "What is your email address?",
-            name: "email"
+                case "Manager":
+                    askmanagerQuestions()
+                    break;
 
-        }]).then(answers  =>{
-            console.log(answers)
+                case "Engineer":
+                    askEngineerQuestions();
+                    break;
+
+                case "Intern":
+                    askInternQuestions();
+                    break;
+            }
+
         })
+}
 
-      
+askmanagerQuestions = function () {
+    inquirer
+        .prompt([
+
+            {
+
+                type: "input",
+                message: "What is your name?",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "What is your employee id number",
+                name: "id"
+            },
+            {
+                type: "input",
+                message: "What is your email address?",
+                name: "email"
+
+
+            },
+            {
+                type: "input",
+                message: "What is your office phone number?",
+                name: "officeNumber"
+            },
+            {
+                type: "confirm",
+                message: "Would You Like to Add Another Team Member?",
+                name: "addAnother"
+
+            }]).then(answers => {
+                const employeeName = answers.name
+                const employeeId = answers.id;
+                const employeeEmail = answers.email
+                const employeeRole = answers.role
+                const officeNum = answers.officeNumber
+
+                myNewManager = new Manager(employeeName, employeeId, employeeEmail, officeNum)
+
+                employeeArray.push(myNewManager);
+
+                console.log(employeeArray);
+
+                if (answers.addAnother){
+                    askGeneralQuestions(employeeArray);
+                    
+                }
+
+            });
+
+
+
+
+};
+
+askEngineerQuestions = function () {
+    inquirer
+        .prompt([
+
+            {
+                type: "input",
+                message: "What is your name?",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "What is your employee id number",
+                name: "id"
+            },
+            {
+                type: "input",
+                message: "What is your email address?",
+                name: "email"
+
+
+            },
+            {
+                type: "input",
+                message: "What is your github user name?",
+                name: "github"
+            },
+            {
+                type: "confirm",
+                message: "Would You Like to Add Another Team Member?",
+                name: "addAnother"
+
+            }]).then(answers => {
+                const employeeName = answers.name
+                const employeeId = answers.id;
+                const employeeEmail = answers.email
+                const github = answers.github;
+
+                
+                myNewEngineer = new Engineer(employeeName, employeeId, employeeEmail, github)
+
+                employeeArray.push(myNewEngineer);
+
+                console.log(employeeArray);
+
+                if (answers.addAnother){
+                    askGeneralQuestions(employeeArray);
+                    
+                }
+            });
+
+
+
+
+};
+
+askInternQuestions = function () {
+
+    inquirer
+        .prompt([
+
+            {
+
+                type: "input",
+                message: "What is your name?",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "What is your employee id number",
+                name: "id"
+            },
+            {
+                type: "input",
+                message: "What is your email address?",
+                name: "email"
+
+
+            },
+            {
+                type: "input",
+                message: "What school did you attend?",
+                name: "school"
+            },
+            {
+                type: "confirm",
+                message: "Would You Like to Add Another Team Member?",
+                name: "addAnother"
+
+            }]).then(answers => {
+                const employeeName = answers.name
+                const employeeId = answers.id;
+                const employeeEmail = answers.email
+                const school = answers.school;
+
+                myNewIntern = new Intern(employeeName, employeeId, employeeEmail, school)
+
+                employeeArray.push(myNewIntern);
+
+                console.log(employeeArray);
+            
+                if (answers.addAnother){
+                    askGeneralQuestions(employeeArray);
+                    
+                }
+
+            });
+}
+
+
+askGeneralQuestions();
+
         // Do you want to add another team member?
-        // Function to repoad question
+        // Function to reload question
         // Create an Array to capture objects
         // Capture user inputs as const
 
