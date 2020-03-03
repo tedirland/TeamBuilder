@@ -19,7 +19,7 @@ inquirer
     .prompt([
         {
             type: "list",
-            message: "What is your role?",
+            message: "Wnhat is your role?",
             name: "role",
             choices: [
               "Manager",
@@ -43,7 +43,16 @@ inquirer
             message: "What is your email address?",
             name: "email"
 
-        }])
+        }]).then(answers  =>{
+            console.log(answers)
+        })
+
+      
+        // Do you want to add another team member?
+        // Function to repoad question
+        // Create an Array to capture objects
+        // Capture user inputs as const
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
