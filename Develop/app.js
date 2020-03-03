@@ -99,7 +99,8 @@ askmanagerQuestions = function () {
                 if (answers.addAnother){
                     askGeneralQuestions(employeeArray);
                     
-                }
+                }else{render.render(employeeArray)
+                    console.log(html)}
 
             });
 
@@ -155,7 +156,8 @@ askEngineerQuestions = function () {
                 if (answers.addAnother){
                     askGeneralQuestions(employeeArray);
                     
-                }
+                }else{render.render(employeeArray)
+                    console.log(html)}
             });
 
 
@@ -211,7 +213,8 @@ askInternQuestions = function () {
                 if (answers.addAnother){
                     askGeneralQuestions(employeeArray);
                     
-                }
+                }else{render.render(employeeArray)
+                console.log(html)}
 
             });
 }
@@ -219,10 +222,6 @@ askInternQuestions = function () {
 
 askGeneralQuestions();
 
-        // Do you want to add another team member?
-        // Function to reload question
-        // Create an Array to capture objects
-        // Capture user inputs as const
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
